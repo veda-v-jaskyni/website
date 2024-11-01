@@ -10,8 +10,15 @@
 ** TODO Caves
 ** TODO Administration
 ** TODO Book a Session
+This is a future feature
 
 * Technical
 ** TODO Domain
 ** TODO Logo
 ** TODO Int
+** TODO CMS
+*** DecapCMS
+
+** TODO Create a Github Org
+*** TODO Add repo
+*** TODO Guide Nela to create an account

@@ -27,12 +27,12 @@ export function middleware(request: NextRequest) {
     // NOTE check whether this is necessary
     if (ignored.some((i) => pathname.includes(i))) return;
 
-    const hasLocale = i18nConfig.locales.some(
+    const hasKnownLocale = i18nConfig.locales.some(
         (locale) =>
-            pathname.startsWith(`${locale}/`) || pathname === `/${locale}`,
+            pathname.startsWith(`/${locale}`) || pathname === `/${locale}`,
     );
 
-    if (hasLocale) return;
+    if (hasKnownLocale) return;
 
     const locale = getLocale(request);
     return NextResponse.redirect(

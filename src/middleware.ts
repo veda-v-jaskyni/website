@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { i18nConfig } from "./i18n-config";
+import { i18nConfig } from "./app/i18n/i18n-config";
 import Negotiator from "negotiator";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import { ignored } from "./ignored";

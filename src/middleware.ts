@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { i18n } from "./i18n-config";
 import Negotiator from "negotiator";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
+import { ignored } from "./ignored";
 
 function getLocale(request: NextRequest): string | undefined {
     const negotiatorHeaders: Record<string, string> = {};
@@ -21,7 +22,7 @@ export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
     // NOTE check whether this is necessary
-    // if (["icons"].includes(pathname)) return;
+    if (ignored.some((i) => pathname.includes(i))) return;
 
     const pathnameIsMissingLocale = i18n.locales.every(
         (locale) =>

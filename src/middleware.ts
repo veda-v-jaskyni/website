@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { i18n } from "./i18n-config";
+import { i18nConfig } from "./i18n-config";
 import Negotiator from "negotiator";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import { ignored } from "./ignored";
@@ -9,10 +9,14 @@ function getLocale(request: NextRequest): string | undefined {
     request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
     let languages = new Negotiator({ headers: negotiatorHeaders }).languages([
-        ...i18n.locales,
+        ...i18nConfig.locales,
     ]);
 
-    const locale = matchLocale(languages, i18n.locales, i18n.defaultLocale);
+    const locale = matchLocale(
+        languages,
+        i18nConfig.locales,
+        i18nConfig.defaultLocale,
+    );
 
     return locale;
 }
@@ -23,7 +27,7 @@ export function middleware(request: NextRequest) {
     // NOTE check whether this is necessary
     if (ignored.some((i) => pathname.includes(i))) return;
 
-    const hasLocale = i18n.locales.some(
+    const hasLocale = i18nConfig.locales.some(
         (locale) =>
             pathname.startsWith(`${locale}/`) || pathname === `/${locale}`,
     );

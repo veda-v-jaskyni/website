@@ -23,9 +23,9 @@ export function middleware(request: NextRequest) {
     // NOTE check whether this is necessary
     if (ignored.some((i) => pathname.includes(i))) return;
 
-    const hasLocale = i18n.locales.every(
+    const hasLocale = i18n.locales.some(
         (locale) =>
-            pathname.startsWith(`${locale}/`) && pathname !== `/${locale}`,
+            pathname.startsWith(`${locale}/`) || pathname === `/${locale}`,
     );
 
     if (hasLocale) return;

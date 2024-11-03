@@ -20,5 +20,6 @@ This is a future feature
 *** DecapCMS
 
 ** TODO Create a Github Org
-*** TODO Add repo
+*** DONE Create an organisation
+*** DONE Add repo
 *** TODO Guide Nela to create an account

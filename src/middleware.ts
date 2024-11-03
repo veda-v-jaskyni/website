@@ -23,21 +23,20 @@ export function middleware(request: NextRequest) {
     // NOTE check whether this is necessary
     if (ignored.some((i) => pathname.includes(i))) return;
 
-    const pathnameIsMissingLocale = i18n.locales.every(
+    const hasLocale = i18n.locales.every(
         (locale) =>
-            !pathname.startsWith(`${locale}/`) && pathname !== `/${locale}`,
+            pathname.startsWith(`${locale}/`) && pathname !== `/${locale}`,
     );
 
-    if (pathnameIsMissingLocale) {
-        const locale = getLocale(request);
+    if (hasLocale) return;
 
-        return NextResponse.redirect(
-            new URL(
-                `${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-                request.url,
-            ),
-        );
-    }
+    const locale = getLocale(request);
+    return NextResponse.redirect(
+        new URL(
+            `${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+            request.url,
+        ),
+    );
 }
 
 export const config = {

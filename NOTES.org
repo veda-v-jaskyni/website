@@ -15,7 +15,7 @@ This is a future feature
 * Technical
 ** TODO Domain
 ** TODO Logo
-** TODO Int
+** DONE Int
 ** TODO CMS
 *** DecapCMS
 
